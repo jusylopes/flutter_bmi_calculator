@@ -1,16 +1,15 @@
 class BmiModel {
-  final double weight;
-  final double height;
+  double weight;
+  double height;
+  Gender gender;
+  bool isSelectedGender;
 
-  BmiModel(this.weight, this.height);
-
-  BmiModel copyWith({
-    double? weight,
-    double? height,
-  }) {
-    return BmiModel(
-      weight ?? this.weight,
-      height ?? this.height,
-    );
-  }
+  BmiModel({
+    required this.weight,
+    required this.height,
+    required this.gender,
+    required this.isSelectedGender,
+  });
 }
+
+enum Gender { MALE, FEMALE, NULL }
