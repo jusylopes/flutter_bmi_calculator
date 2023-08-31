@@ -34,10 +34,6 @@ flutter:
   uses-material-design: true
   
   assets:
-    - assets/images/body_female.png
-    - assets/images/body_male.png
-    - assets/images/head_female.png
-    - assets/images/head_male.png
     - assets/images/male.png
     - assets/images/female.png
   
