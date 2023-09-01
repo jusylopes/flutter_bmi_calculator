@@ -23,6 +23,7 @@ class SliderHeight extends StatelessWidget {
           child: SfSlider.vertical(
             value: bmiProvider.height,
             onChanged: (newValue) => bmiProvider.updateHeight(newValue),
+            minorTicksPerInterval: 5,
             interval: 50,
             showTicks: true,
             showLabels: true,

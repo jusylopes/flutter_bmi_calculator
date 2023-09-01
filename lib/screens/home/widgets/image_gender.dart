@@ -21,17 +21,12 @@ class ImageGender extends StatelessWidget {
       onDoubleTap: () => bmiProvider.selectGender(Gender.NULL),
       child: SizedBox(
         width: MediaQuery.of(context).size.width / 2.5,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              assetImage,
-              color: bmiProvider.selectedGender == gender ||
-                      bmiProvider.selectedGender == Gender.NULL
-                  ? null
-                  : const Color.fromRGBO(255, 255, 255, 0.5),
-            ),
-          ],
+        child: Image.asset(
+          assetImage,
+          color: bmiProvider.selectedGender == gender ||
+                  bmiProvider.selectedGender == Gender.NULL
+              ? null
+              : const Color.fromRGBO(255, 255, 255, 0.5),
         ),
       ),
     );

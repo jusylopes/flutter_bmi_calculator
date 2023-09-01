@@ -1,6 +1,5 @@
 import 'package:bmi_calculator/providers/bmi_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SliderWeight extends StatelessWidget {
   const SliderWeight({
@@ -12,15 +11,26 @@ class SliderWeight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 350,
-      child: SfSlider(
-        value: bmiProvider.weight,
-        onChanged: (newValue) => bmiProvider.updateWeight(newValue),
-        interval: 20,
-        max: 180,
-        min: 0,
-        stepSize: 1,
+    return SliderTheme(
+      data: SliderThemeData(
+        trackHeight: 60,
+        thumbShape: SliderComponentShape.noOverlay,
+        overlayShape: SliderComponentShape.noOverlay,
+        valueIndicatorShape: SliderComponentShape.noOverlay,
+        trackShape: const RectangularSliderTrackShape(),
+        activeTickMarkColor: Colors.transparent,
+        inactiveTickMarkColor: Colors.transparent,
+        
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        width: MediaQuery.of(context).size.width / 2,
+        child: Slider(
+          value: bmiProvider.weight,
+          onChanged: (newValue) => bmiProvider.updateWeight(newValue),
+          max: 180,
+          min: 0,
+        ),
       ),
     );
   }

@@ -23,42 +23,34 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               bmiProvider.selectedGender == Gender.NULL
                   ? _showGenderSelectionSnackBar(context)
-                  : _navigateToNextScreen(context);
+                  : Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const BmiScreen()),
+                    );
             },
           ),
         ],
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ImageGender(
-            bmiProvider: bmiProvider,
-            gender: Gender.FEMALE,
-            assetImage: AssetsManager.imageFemale,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          ImageGender(
-            bmiProvider: bmiProvider,
-            gender: Gender.MALE,
-            assetImage: AssetsManager.imageMale,
-          )
-        ],
-      ),
-    );
-  }
-
-  void _navigateToNextScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const BmiScreen(),
-        transitionDuration: Duration.zero,
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return child;
-        },
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ImageGender(
+              bmiProvider: bmiProvider,
+              gender: Gender.FEMALE,
+              assetImage: AssetsManager.imageFemale,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            ImageGender(
+              bmiProvider: bmiProvider,
+              gender: Gender.MALE,
+              assetImage: AssetsManager.imageMale,
+            )
+          ],
+        ),
       ),
     );
   }
