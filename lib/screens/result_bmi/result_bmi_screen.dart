@@ -1,4 +1,6 @@
+import 'package:bmi_calculator/models/bmi_model.dart';
 import 'package:bmi_calculator/providers/bmi_provider.dart';
+import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,23 +23,49 @@ class ResultBmiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        Text('Your BMI is', style: Theme.of(context).textTheme.titleLarge),
-        Consumer<BmiProvider>(builder: (context, value, child) {
-          return Text('${value.bmiValue}');
-        }),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: ElevatedButton(
+        body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Your BMI is', style: Theme.of(context).textTheme.titleLarge),
+          Consumer<BmiProvider>(builder: (context, bmi, child) {
+            return Column(
+              children: [
+                Text(
+                  bmi.bmiValue.toStringAsFixed(2),
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(
+                    bmi.selectedGender == Gender.MALE
+                        ? AssetsManager.imageMale
+                        : AssetsManager.imageFemale,
+                    fit: BoxFit.fill,
+                    color: bmi.getResultColor(),
+                    height: MediaQuery.of(context).size.height / 3,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(
+                    bmi.getResultString(),
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+              ],
+            );
+          }),
+          ElevatedButton(
             onPressed: () => _recalculateBMI(context),
+            style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
             child: Text(
               'Recalculate your BMI',
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ));
   }
 }
