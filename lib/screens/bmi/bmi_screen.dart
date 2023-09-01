@@ -66,6 +66,3 @@ class BmiScreen extends StatelessWidget {
     );
   }
 }
-
-
-
