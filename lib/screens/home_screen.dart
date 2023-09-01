@@ -1,7 +1,7 @@
 import 'package:bmi_calculator/models/bmi_model.dart';
 import 'package:bmi_calculator/providers/bmi_provider.dart';
-import 'package:bmi_calculator/screens/bmi/bmi_screen.dart';
-import 'package:bmi_calculator/screens/home/widgets/image_gender.dart';
+import 'package:bmi_calculator/screens/bmi_screen.dart';
+import 'package:bmi_calculator/screens/widgets/image_gender.dart';
 import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:bmi_calculator/utils/colors.dart';
 import 'package:flutter/material.dart';

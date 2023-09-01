@@ -4,7 +4,7 @@ import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../home/home_screen.dart';
+import 'home_screen.dart';
 
 class ResultBmiScreen extends StatelessWidget {
   const ResultBmiScreen({super.key});

@@ -1,9 +1,9 @@
 import 'package:bmi_calculator/providers/bmi_provider.dart';
-import 'package:bmi_calculator/screens/home/home_screen.dart';
-import 'package:bmi_calculator/screens/result_bmi/result_bmi_screen.dart';
-import 'package:bmi_calculator/screens/bmi/widgets/image_gender_bmi.dart';
-import 'package:bmi_calculator/screens/bmi/widgets/slider_height.dart';
-import 'package:bmi_calculator/screens/bmi/widgets/slider_weight.dart';
+import 'package:bmi_calculator/screens/home_screen.dart';
+import 'package:bmi_calculator/screens/result_bmi_screen.dart';
+import 'package:bmi_calculator/screens/widgets/image_gender_bmi.dart';
+import 'package:bmi_calculator/screens/widgets/slider_height.dart';
+import 'package:bmi_calculator/screens/widgets/slider_weight.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

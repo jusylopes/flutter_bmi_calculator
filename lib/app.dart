@@ -1,5 +1,5 @@
 import 'package:bmi_calculator/providers/bmi_provider.dart';
-import 'package:bmi_calculator/screens/home/home_screen.dart';
+import 'package:bmi_calculator/screens/home_screen.dart';
 
 import 'package:bmi_calculator/utils/constants.dart';
 import 'package:bmi_calculator/utils/theme.dart';
