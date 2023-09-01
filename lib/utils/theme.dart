@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/utils/colors.dart';
+import 'package:bmi_calculator/utils/no_transitions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,6 +21,12 @@ abstract class AppTheme {
               fontWeight: FontWeight.bold),
         ),
         textTheme: _buildTextTheme(),
+        pageTransitionsTheme: PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: NoTransitionsScreen(),
+            TargetPlatform.iOS: NoTransitionsScreen(),
+          },
+        ),
       );
 
   static TextTheme _buildTextTheme() {
