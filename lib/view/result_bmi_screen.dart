@@ -1,5 +1,5 @@
 import 'package:bmi_calculator/models/bmi_model.dart';
-import 'package:bmi_calculator/providers/bmi_provider.dart';
+import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +10,8 @@ class ResultBmiScreen extends StatelessWidget {
   const ResultBmiScreen({super.key});
 
   void _recalculateBMI(BuildContext context) {
-    final bmiProvider = Provider.of<BmiProvider>(context, listen: false);
-    bmiProvider.resetValues();
+    final bmiContoller = Provider.of<BmiController>(context, listen: false);
+    bmiContoller.resetValues();
 
     Navigator.pushAndRemoveUntil(
       context,
@@ -28,7 +28,7 @@ class ResultBmiScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Your BMI is', style: Theme.of(context).textTheme.titleLarge),
-          Consumer<BmiProvider>(builder: (context, bmi, child) {
+          Consumer<BmiController>(builder: (context, bmi, child) {
             return Column(
               children: [
                 Text(

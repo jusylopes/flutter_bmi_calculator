@@ -1,7 +1,7 @@
 import 'package:bmi_calculator/models/bmi_model.dart';
-import 'package:bmi_calculator/providers/bmi_provider.dart';
-import 'package:bmi_calculator/screens/bmi_screen.dart';
-import 'package:bmi_calculator/screens/widgets/image_gender.dart';
+import 'package:bmi_calculator/controllers/bmi_controller.dart';
+import 'package:bmi_calculator/view/bmi_screen.dart';
+import 'package:bmi_calculator/view/components/image_gender.dart';
 import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:bmi_calculator/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bmiProvider = Provider.of<BmiProvider>(context);
+    final bmiController = Provider.of<BmiController>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.arrow_forward_ios),
             onPressed: () {
-              bmiProvider.selectedGender == Gender.NULL
+              bmiController.selectedGender == Gender.NULL
                   ? _showGenderSelectionSnackBar(context)
                   : Navigator.push(
                       context,
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ImageGender(
-              bmiProvider: bmiProvider,
+              bmiController: bmiController,
               gender: Gender.FEMALE,
               assetImage: AssetsManager.imageFemale,
             ),
@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
               width: 10,
             ),
             ImageGender(
-              bmiProvider: bmiProvider,
+              bmiController: bmiController,
               gender: Gender.MALE,
               assetImage: AssetsManager.imageMale,
             )

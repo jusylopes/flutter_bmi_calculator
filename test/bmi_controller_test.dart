@@ -1,10 +1,10 @@
-import 'package:bmi_calculator/providers/bmi_provider.dart';
+import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('BmiProvider', () {
+  group('BmiController', () {
     test('calculateBmi calculates BMI correctly', () {
-      final bmiProvider = BmiProvider();
+      final bmiProvider = BmiController();
       bmiProvider.updateHeight(170);
       bmiProvider.updateWeight(70);
 

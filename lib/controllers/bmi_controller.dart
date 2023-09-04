@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:bmi_calculator/models/bmi_model.dart';
 import 'dart:math';
 
-class BmiProvider with ChangeNotifier {
+class BmiController with ChangeNotifier {
   final BmiModel _bmiModel = BmiModel(
     height: 160,
     weight: 60,

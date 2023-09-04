@@ -1,28 +1,28 @@
-import 'package:bmi_calculator/providers/bmi_provider.dart';
+import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SliderHeight extends StatelessWidget {
   const SliderHeight({
     super.key,
-    required this.bmiProvider,
+    required this.bmiController,
   });
 
-  final BmiProvider bmiProvider;
+  final BmiController bmiController;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          '${bmiProvider.height.toInt()} cm',
+          '${bmiController.height.toInt()} cm',
           style: Theme.of(context).textTheme.titleLarge,
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height / 2.5,
           child: SfSlider.vertical(
-            value: bmiProvider.height,
-            onChanged: (newValue) => bmiProvider.updateHeight(newValue),
+            value: bmiController.height,
+            onChanged: (newValue) => bmiController.updateHeight(newValue),
             minorTicksPerInterval: 5,
             interval: 50,
             showTicks: true,

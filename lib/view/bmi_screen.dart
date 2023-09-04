@@ -1,9 +1,9 @@
-import 'package:bmi_calculator/providers/bmi_provider.dart';
-import 'package:bmi_calculator/screens/home_screen.dart';
-import 'package:bmi_calculator/screens/result_bmi_screen.dart';
-import 'package:bmi_calculator/screens/widgets/image_gender_bmi.dart';
-import 'package:bmi_calculator/screens/widgets/slider_height.dart';
-import 'package:bmi_calculator/screens/widgets/slider_weight.dart';
+import 'package:bmi_calculator/controllers/bmi_controller.dart';
+import 'package:bmi_calculator/view/home_screen.dart';
+import 'package:bmi_calculator/view/result_bmi_screen.dart';
+import 'package:bmi_calculator/view/components/image_gender_bmi.dart';
+import 'package:bmi_calculator/view/components/slider_height.dart';
+import 'package:bmi_calculator/view/components/slider_weight.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +12,7 @@ class BmiScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bmiProvider = Provider.of<BmiProvider>(context);
+    final bmiController = Provider.of<BmiController>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -48,19 +48,19 @@ class BmiScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ImageGenderBmi(bmiProvider: bmiProvider),
+              ImageGenderBmi(bmiController: bmiController),
               const SizedBox(width: 15),
-              SliderHeight(bmiProvider: bmiProvider),
+              SliderHeight(bmiController: bmiController),
             ],
           ),
           const SizedBox(
             height: 30,
           ),
           Text(
-            '${bmiProvider.weight.toInt()} Kg',
+            '${bmiController.weight.toInt()} Kg',
             style: Theme.of(context).textTheme.titleLarge,
           ),
-          SliderWeight(bmiProvider: bmiProvider),
+          SliderWeight(bmiController: bmiController),
         ],
       ),
     );

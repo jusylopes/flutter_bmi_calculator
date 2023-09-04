@@ -1,5 +1,5 @@
-import 'package:bmi_calculator/providers/bmi_provider.dart';
-import 'package:bmi_calculator/screens/home_screen.dart';
+import 'package:bmi_calculator/controllers/bmi_controller.dart';
+import 'package:bmi_calculator/view/home_screen.dart';
 
 import 'package:bmi_calculator/utils/constants.dart';
 import 'package:bmi_calculator/utils/theme.dart';
@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => BmiProvider(),
+      create: (context) => BmiController(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: Constants.appName,
