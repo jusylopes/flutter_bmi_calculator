@@ -9,17 +9,6 @@ import 'home_screen.dart';
 class ResultBmiScreen extends StatelessWidget {
   const ResultBmiScreen({super.key});
 
-  void _recalculateBMI(BuildContext context) {
-    final bmiContoller = Provider.of<BmiController>(context, listen: false);
-    bmiContoller.resetValues();
-
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => const HomeScreen()),
-      (route) => false,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,4 +57,15 @@ class ResultBmiScreen extends StatelessWidget {
       ),
     ));
   }
+}
+
+void _recalculateBMI(BuildContext context) {
+  final bmiContoller = Provider.of<BmiController>(context, listen: false);
+  bmiContoller.resetValues();
+
+  Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(builder: (context) => const HomeScreen()),
+    (route) => false,
+  );
 }
