@@ -36,9 +36,14 @@ abstract class AppTheme {
         fontWeight: FontWeight.bold,
         color: Colors.black,
       ),
-      titleSmall: TextStyle(
+      titleMedium: TextStyle(
         fontSize: 22.0,
         fontWeight: FontWeight.bold,
+        color: Colors.black,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 20.0,
+        fontWeight: FontWeight.w600,
         color: Colors.black,
       ),
     );
