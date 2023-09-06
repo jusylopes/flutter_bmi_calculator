@@ -1,24 +1,37 @@
 import 'package:bmi_calculator/models/bmi_model.dart';
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/utils/assets_manager.dart';
+import 'package:bmi_calculator/view/components/favorite_buton.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'home_screen.dart';
 
-class ResultBmiScreen extends StatelessWidget {
+class ResultBmiScreen extends StatefulWidget {
   const ResultBmiScreen({super.key});
 
   @override
+  State<ResultBmiScreen> createState() => _ResultBmiScreenState();
+}
+
+class _ResultBmiScreenState extends State<ResultBmiScreen> {
+  @override
+  void dispose() {
+    // Hive.box('bmis').close();
+    //Hive.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final bmi = Provider.of<BmiController>(context);
+
     return Scaffold(
-        body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('Your BMI is', style: Theme.of(context).textTheme.titleLarge),
-          Consumer<BmiController>(builder: (context, bmi, child) {
-            return Column(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Your BMI is', style: Theme.of(context).textTheme.titleLarge),
+            Column(
               children: [
                 Text(
                   bmi.bmiValue.toStringAsFixed(2),
@@ -43,21 +56,23 @@ class ResultBmiScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            );
-          }),
-          ElevatedButton(
-            onPressed: () => _recalculateBMI(context),
-            style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
-            child: Text(
-              'Recalculate your BMI',
-              style: Theme.of(context).textTheme.titleSmall,
             ),
-          ),
-        ],
+            ElevatedButton(
+              onPressed: () => _recalculateBMI(context),
+              style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+              child: Text(
+                'Recalculate your BMI',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            ),
+          ],
+        ),
       ),
-    ));
+      floatingActionButton: FavoriteButton(bmi: bmi),
+    );
   }
 }
+
 
 void _recalculateBMI(BuildContext context) {
   final bmiContoller = Provider.of<BmiController>(context, listen: false);

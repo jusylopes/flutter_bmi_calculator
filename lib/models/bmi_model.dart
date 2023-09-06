@@ -10,5 +10,8 @@ class BmiModel {
   });
 }
 
-// ignore: constant_identifier_names
-enum Gender { MALE, FEMALE, NULL }
+enum Gender {
+  MALE,
+  FEMALE,
+  NULL,
+}
