@@ -61,7 +61,7 @@ class BmiController with ChangeNotifier {
   Color getResultColor() {
     double bmi = bmiValue;
 
-    if (bmi < 18.5) {
+    if (bmi < 17) {
       return AppColors.colorBmiGrey;
     } else if (bmi < 25) {
       return AppColors.colorBmiGreen;
