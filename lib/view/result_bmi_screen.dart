@@ -3,23 +3,11 @@ import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:bmi_calculator/view/components/favorite_buton.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'home_screen.dart';
 
-class ResultBmiScreen extends StatefulWidget {
+class ResultBmiScreen extends StatelessWidget {
   const ResultBmiScreen({super.key});
-
-  @override
-  State<ResultBmiScreen> createState() => _ResultBmiScreenState();
-}
-
-class _ResultBmiScreenState extends State<ResultBmiScreen> {
-  @override
-  void dispose() {
-    Hive.close();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
