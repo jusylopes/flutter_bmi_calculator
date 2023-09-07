@@ -3,6 +3,7 @@ import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:bmi_calculator/view/components/favorite_buton.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'home_screen.dart';
 
@@ -16,8 +17,7 @@ class ResultBmiScreen extends StatefulWidget {
 class _ResultBmiScreenState extends State<ResultBmiScreen> {
   @override
   void dispose() {
-    // Hive.box('bmis').close();
-    //Hive.close();
+    Hive.close();
     super.dispose();
   }
 
@@ -72,7 +72,6 @@ class _ResultBmiScreenState extends State<ResultBmiScreen> {
     );
   }
 }
-
 
 void _recalculateBMI(BuildContext context) {
   final bmiContoller = Provider.of<BmiController>(context, listen: false);
