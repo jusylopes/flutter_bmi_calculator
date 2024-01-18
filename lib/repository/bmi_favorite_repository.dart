@@ -1,35 +1,56 @@
-import 'package:bmi_calculator/adapters/bmi_favorite_adapter.dart';
-import 'package:bmi_calculator/models/bmi_favorite_model.dart';
-
-import 'package:hive/hive.dart';
+import 'package:bmi_calculator/database/database_helper.dart';
+import 'package:bmi_calculator/models/bmi_favorite_sql_model.dart';
+import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 
 class BmiFavoriteRepository {
-  late LazyBox<BmiFavoriteModel> box;
+  final DatabaseHelper _databaseHelper = DatabaseHelper.instance;
 
-  Future<void> openBox() async {
-    Hive.registerAdapter(BmiFavoriteHiveAdapter());
-    box = await Hive.openLazyBox<BmiFavoriteModel>('bmifavorite');
-  }
-
-  Future<void> addBmi(BmiFavoriteModel bmi) async {
-    await box.put(bmi.id, bmi);
+  Future<void> saveBmi(BmiFavoriteSqlModel bmi) async {
+    final Database db = await _databaseHelper.database;
+    try {
+      await db.insert(DatabaseHelper.bmiTable, bmi.toMap());
+    } catch (e) {
+      print('Erro ao inserir no banco de dados: $e');
+    }
   }
 
   Future<void> deleteBmi(String id) async {
-   await box.delete(id);
+    final Database db = await _databaseHelper.database;
+    await db.delete(
+      DatabaseHelper.bmiTable,
+      where: '${DatabaseHelper.columnId} = ?',
+      whereArgs: [id],
+    );
   }
 
-  Future<List<BmiFavoriteModel>> getBmis() async {
-    final bmiKeys = box.keys;
-    final bmiList = <BmiFavoriteModel>[];
+  Future<List<BmiFavoriteSqlModel?>> getBmis() async {
+    try {
+      final Database db = await _databaseHelper.database;
+      final List<Map<String, dynamic>> maps =
+          await db.query(DatabaseHelper.bmiTable);
 
-    for (var key in bmiKeys) {
-      final bmi = await box.get(key);
-      if (bmi != null) {
-        bmiList.add(bmi);
-      }
+      return List.generate(maps.length, (i) {
+        try {
+          return BmiFavoriteSqlModel(
+            id: maps[i][DatabaseHelper.columnId],
+            bmi: maps[i][DatabaseHelper.columnBmi],
+            height: maps[i][DatabaseHelper.columnHeight],
+            weight: maps[i][DatabaseHelper.columnWeight],
+            date: DateTime.fromMillisecondsSinceEpoch(
+                int.parse(maps[i][DatabaseHelper.columnDate])),
+            classification: maps[i][DatabaseHelper.columnClassification],
+            colorClassification: Color(
+                int.parse(maps[i][DatabaseHelper.columnColorClassification])),
+          );
+        } catch (e) {
+          print('Error parsing data at index $i: $e');
+          return null; 
+        }
+      }).where((item) => item != null).toList(); 
+    } catch (e) {
+      print('Error getting BMIs: $e');
+      return [];
     }
-
-    return bmiList;
   }
 }
