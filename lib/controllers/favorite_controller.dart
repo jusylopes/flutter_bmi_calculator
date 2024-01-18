@@ -1,30 +1,23 @@
 import 'dart:collection';
-
 import 'package:flutter/material.dart';
-
-import 'package:bmi_calculator/models/bmi_favorite_model.dart';
+import 'package:bmi_calculator/models/bmi_favorite_sql_model.dart';
 import 'package:bmi_calculator/repository/bmi_favorite_repository.dart';
 
 class FavoriteController extends ChangeNotifier {
   final BmiFavoriteRepository _repository;
 
-  FavoriteController(this._repository) {
-    _startBox();
-  }
+  FavoriteController(this._repository);
 
-  final List<BmiFavoriteModel> _bmiList = [];
-  UnmodifiableListView<BmiFavoriteModel> get bmis =>
+  final List<BmiFavoriteSqlModel> _bmiList = [];
+  UnmodifiableListView<BmiFavoriteSqlModel> get bmis =>
       UnmodifiableListView(_bmiList);
 
-  Future<void> _startBox() async {
-    await _repository.openBox();
+  Future<void> startDatabase() async {
     await getBmis();
   }
 
-  Future<void> addBmi({required BmiFavoriteModel bmi}) async {
-    await _repository.addBmi(bmi);
+  Future<void> saveBmi({required BmiFavoriteSqlModel bmi}) async {
     _bmiList.add(bmi);
-
     notifyListeners();
   }
 
@@ -42,7 +35,7 @@ class FavoriteController extends ChangeNotifier {
   Future<void> getBmis() async {
     final bmis = await _repository.getBmis();
     _bmiList.clear();
-    _bmiList.addAll(bmis);
+    _bmiList.addAll(bmis.whereType<BmiFavoriteSqlModel>());
 
     notifyListeners();
   }
