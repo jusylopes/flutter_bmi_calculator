@@ -8,24 +8,22 @@ version: 1.0.0+1
 environment:
   sdk: '>=3.0.6 <4.0.0'
 
-dependencies:  
+dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
   google_fonts: ^5.1.0
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
   intl: ^0.18.1
-  path_provider: ^2.1.1
-  provider: ^6.0.5
-  syncfusion_flutter_sliders: ^22.2.11
+  path: ^1.8.3  
+  provider: ^6.1.1
+  sqflite: ^2.3.0
+  syncfusion_flutter_sliders: ^21.2.5
 
 dev_dependencies:
   flutter_lints: ^2.0.0
 
   flutter_test:
     sdk: flutter
-  
 
 flutter:
 
@@ -35,4 +33,3 @@ flutter:
     - assets/images/male.png
     - assets/images/female.png
     - assets/images/empty_results.png
-    
