@@ -17,7 +17,8 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select your gender'),
+        title: const Text('Select your gender',
+            maxLines: 2, textAlign: TextAlign.center),
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_forward_ios),
@@ -38,7 +39,7 @@ class HomeScreen extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const HistoryScreen()),
+              MaterialPageRoute(builder: (context) => const FavoriteScreen()),
             );
           },
         ),

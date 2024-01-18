@@ -1,4 +1,4 @@
-import 'package:bmi_calculator/models/bmi_favorite_model.dart';
+import 'package:bmi_calculator/models/bmi_favorite_sql_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -8,7 +8,7 @@ class FavoriteCard extends StatelessWidget {
     required this.favoriteItem,
   });
 
-  final BmiFavoriteModel favoriteItem;
+  final BmiFavoriteSqlModel favoriteItem;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +22,10 @@ class FavoriteCard extends StatelessWidget {
         style: Theme.of(context).textTheme.titleMedium,
       ),
       subtitle: Text(
-        formatDate(favoriteItem.data.toString()),
+        formatDate(favoriteItem.date.toString()),
         style: Theme.of(context).textTheme.titleSmall,
       ),
-      tileColor: favoriteItem.color,
+      tileColor: favoriteItem.colorClassification,
       trailing: const Icon(Icons.arrow_back_ios),
     );
   }
