@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
+import 'package:bmi_calculator/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
@@ -29,6 +30,8 @@ class SliderHeight extends StatelessWidget {
             showLabels: true,
             max: 200,
             min: 0,
+            activeColor: AppColors.colorPrimarySwatch,
+            inactiveColor: AppColors.colorPrimarySwatch.withOpacity(0.4),
           ),
         ),
       ],

@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
+import 'package:bmi_calculator/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class SliderWeight extends StatelessWidget {
@@ -18,8 +19,8 @@ class SliderWeight extends StatelessWidget {
         overlayShape: SliderComponentShape.noOverlay,
         valueIndicatorShape: SliderComponentShape.noOverlay,
         trackShape: const RectangularSliderTrackShape(),
-        activeTickMarkColor: Colors.transparent,
-        inactiveTickMarkColor: Colors.transparent,
+        activeTrackColor: AppColors.colorPrimarySwatch,
+        inactiveTrackColor: AppColors.colorPrimarySwatch.withOpacity(0.4),
       ),
       child: Container(
         padding: const EdgeInsets.all(15),

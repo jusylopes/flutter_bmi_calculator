@@ -41,7 +41,7 @@ class _EmptyResultsMessageState extends State<EmptyResultsMessage>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 4,
+            height: MediaQuery.of(context).size.height / 5,
             child: SlideTransition(
               position: _animation,
               child: Image.asset(AssetsManager.imageEmpty),
