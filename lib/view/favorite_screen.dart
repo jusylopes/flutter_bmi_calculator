@@ -5,8 +5,20 @@ import 'package:bmi_calculator/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HistoryScreen extends StatelessWidget {
-  const HistoryScreen({super.key});
+class FavoriteScreen extends StatefulWidget {
+  const FavoriteScreen({super.key});
+
+  @override
+  State<FavoriteScreen> createState() => _FavoriteScreenState();
+}
+
+class _FavoriteScreenState extends State<FavoriteScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<FavoriteController>(context, listen: false).startDatabase();
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +48,7 @@ class HistoryScreen extends StatelessWidget {
                       return Dismissible(
                         key: UniqueKey(),
                         onDismissed: (direction) {
-                          favorites.deleteBmi(id: favoriteItem.id);
+                          favorites.deleteBmi(id: favoriteItem.id.toString());
                         },
                         direction: DismissDirection.endToStart,
                         confirmDismiss: (_) async {
