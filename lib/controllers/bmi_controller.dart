@@ -7,12 +7,12 @@ class BmiController with ChangeNotifier {
   final BmiModel _bmiModel = BmiModel(
     height: 160,
     weight: 60,
-    gender: Gender.NULL,
+    gender: Caracter.NULL,
   );
 
   double get height => _bmiModel.height;
   double get weight => _bmiModel.weight;
-  Gender get selectedGender => _bmiModel.gender;
+  Caracter get selectedCaracter => _bmiModel.gender;
   double get bmiValue => _bmiModel.weight / pow(_bmiModel.height / 100, 2);
 
   void updateHeight(double height) {
@@ -25,7 +25,7 @@ class BmiController with ChangeNotifier {
     notifyListeners();
   }
 
-  void selectGender(Gender gender) {
+  void selectCaracter(Caracter gender) {
     _bmiModel.gender = gender;
     notifyListeners();
   }
@@ -33,7 +33,7 @@ class BmiController with ChangeNotifier {
   void resetValues() {
     _bmiModel.height = 160;
     _bmiModel.weight = 60;
-    _bmiModel.gender = Gender.NULL;
+    _bmiModel.gender = Caracter.NULL;
     notifyListeners();
   }
 
