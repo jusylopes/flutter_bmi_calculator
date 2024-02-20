@@ -1,7 +1,7 @@
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/view/home_screen.dart';
 import 'package:bmi_calculator/view/result_bmi_screen.dart';
-import 'package:bmi_calculator/view/components/image_gender_bmi.dart';
+import 'package:bmi_calculator/view/components/image_caracter_bmi.dart';
 import 'package:bmi_calculator/view/components/slider_height.dart';
 import 'package:bmi_calculator/view/components/slider_weight.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class BmiScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select your size and weight',
+        title: const Text('Selecione seu peso e altura',
             maxLines: 2, textAlign: TextAlign.center),
         actions: [
           IconButton(
@@ -48,7 +48,7 @@ class BmiScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ImageGenderBmi(bmiController: bmiController),
+              ImageCaracterBmi(bmiController: bmiController),
               const SizedBox(width: 15),
               SliderHeight(bmiController: bmiController),
             ],

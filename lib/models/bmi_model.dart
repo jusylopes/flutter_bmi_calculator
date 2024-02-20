@@ -1,7 +1,7 @@
 class BmiModel {
   double weight;
   double height;
-  Gender gender;
+  Caracter gender;
 
   BmiModel({
     required this.weight,
@@ -10,7 +10,7 @@ class BmiModel {
   });
 }
 
-enum Gender {
+enum Caracter {
   MALE,
   FEMALE,
   NULL,
