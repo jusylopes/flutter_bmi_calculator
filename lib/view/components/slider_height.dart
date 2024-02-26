@@ -1,6 +1,7 @@
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SliderHeight extends StatelessWidget {
@@ -21,17 +22,21 @@ class SliderHeight extends StatelessWidget {
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height / 2.5,
-          child: SfSlider.vertical(
-            value: bmiController.height,
-            onChanged: (newValue) => bmiController.updateHeight(newValue),
-            minorTicksPerInterval: 5,
-            interval: 50,
-            showTicks: true,
-            showLabels: true,
-            max: 200,
-            min: 0,
-            activeColor: AppColors.colorPrimarySwatch,
-            inactiveColor: AppColors.colorPrimarySwatch.withOpacity(0.4),
+          child: SfSliderTheme(
+            data: SfSliderThemeData(
+              activeTrackHeight: 30,
+              inactiveTrackHeight: 30,
+            ),
+            child: SfSlider.vertical(
+              value: bmiController.height,
+              onChanged: (newValue) => bmiController.updateHeight(newValue),
+              minorTicksPerInterval: 5,
+              interval: 50,
+              showTicks: true,
+              showLabels: true,
+              max: 200,
+              min: 0,
+            ),
           ),
         ),
       ],
