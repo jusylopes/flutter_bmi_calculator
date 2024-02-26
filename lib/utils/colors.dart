@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primaryColor = Color(0xFFf8ab33);
+  static const Color primaryColor = Color(0xFF2F2A6C);
   static MaterialColor createMaterialColor(Color color) {
     List<Color> shades = [
       color.withOpacity(0.1),
@@ -31,7 +31,7 @@ class AppColors {
   }
 
   static MaterialColor colorPrimarySwatch = createMaterialColor(primaryColor);
-  static const Color colorBackground = Color(0xFF16A9B5);
+  static const Color colorBackground = Color(0xFFF4A20F);
   static const Color colorBmiGrey = Color.fromRGBO(255, 255, 255, 0.9);
   static const Color colorBmiGreen = Color.fromRGBO(10, 115, 119, 0.9);
   static const Color colorBmiYellow = Color.fromRGBO(246, 191, 29, 0.9);
