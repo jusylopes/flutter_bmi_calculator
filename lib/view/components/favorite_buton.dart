@@ -34,10 +34,10 @@ class FavoriteButton extends StatelessWidget {
               .saveBmi(bmi: bmiFavorite);
 
           SnackbarUtils.showSnackBar(
-              context: context, text: 'BMI saved successfully.');
+              context: context, text: 'IMC salvo com sucesso.');
         } catch (e) {
           SnackbarUtils.showSnackBar(
-              context: context, text: 'Failed to save BMI data.');
+              context: context, text: 'Falha ao salvar IMC.');
         }
       },
       backgroundColor: AppColors.primaryColor,
