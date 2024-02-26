@@ -18,7 +18,7 @@ class ResultBmiScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Your BMI is', style: Theme.of(context).textTheme.titleLarge),
+            Text('Seu IMC é', style: Theme.of(context).textTheme.titleLarge),
             Column(
               children: [
                 Text(
@@ -28,7 +28,7 @@ class ResultBmiScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Image.asset(
-                    bmi.selectedGender == Gender.MALE
+                    bmi.selectedCaracter == Caracter.MALE
                         ? AssetsManager.imageMale
                         : AssetsManager.imageFemale,
                     fit: BoxFit.fill,
@@ -49,7 +49,7 @@ class ResultBmiScreen extends StatelessWidget {
               onPressed: () => _recalculateBMI(context),
               style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
               child: Text(
-                'Recalculate your BMI',
+                'Recalcule um IMC',
                 style: Theme.of(context).textTheme.titleSmall,
               ),
             ),

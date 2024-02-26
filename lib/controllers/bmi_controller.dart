@@ -39,22 +39,19 @@ class BmiController with ChangeNotifier {
 
   String getResultString() {
     double bmi = bmiValue;
-    if (bmi < 16) {
-      return 'SEVERE UNDERWEIGHT';
-    } else if (bmi < 17) {
-      return 'MODERATE UNDERWEIGHT';
-    } else if (bmi < 18.5) {
-      return 'MILD UNDERWEIGHT';
-    } else if (bmi < 25) {
-      return 'HEALTHY';
-    } else if (bmi < 30) {
-      return 'OVERWEIGHT';
-    } else if (bmi < 35) {
-      return 'SEVERE OBESITY (Class I)';
-    } else if (bmi < 40) {
-      return 'SEVERE OBESITY (Class II)';
+
+    if (bmi < 18.5) {
+      return 'ABAIXO DO PESO';
+    } else if (bmi < 24.5) {
+      return 'PESO NORMAL';
+    } else if (bmi < 29.9) {
+      return 'SOBREPESO';
+    } else if (bmi < 34.9) {
+      return 'OBESIDADE (Grau I)';
+    } else if (bmi < 39.9) {
+      return 'OBESIDADE (Grau II)';
     } else {
-      return 'MORBID OBESITY (Class III)';
+      return 'OBESIDADE (Grau III) ou MÓRBIDA';
     }
   }
 
@@ -63,9 +60,9 @@ class BmiController with ChangeNotifier {
 
     if (bmi < 17) {
       return AppColors.colorBmiGrey;
-    } else if (bmi < 25) {
+    } else if (bmi < 24.5) {
       return AppColors.colorBmiGreen;
-    } else if (bmi < 35) {
+    } else if (bmi < 34.9) {
       return AppColors.colorBmiOrange;
     } else {
       return Colors.red;
