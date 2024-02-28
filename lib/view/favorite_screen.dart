@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteScreen extends StatefulWidget {
-  const FavoriteScreen({super.key});
+  const FavoriteScreen({Key? key}) : super(key: key);
 
   @override
   State<FavoriteScreen> createState() => _FavoriteScreenState();
@@ -17,14 +17,14 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   void initState() {
     super.initState();
     Provider.of<FavoriteController>(context, listen: false).startDatabase();
-    
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My results'),
+        title: const Text('Resultados salvos',
+            maxLines: 2, textAlign: TextAlign.center),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
@@ -70,8 +70,8 @@ Future<bool?> _confirmDismissDialog(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text('Confirm'),
-        content: const Text('Are you sure you want to delete this result?'),
+        title: const Text('Confirmar'),
+        content: const Text('Tem certeza que deseja deletar este resultado?'),
         actions: <Widget>[
           TextButton(
               onPressed: () => Navigator.of(context).pop(true),
@@ -82,7 +82,7 @@ Future<bool?> _confirmDismissDialog(BuildContext context) {
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: const Text(
-              'CANCEL',
+              'CANCELAR',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
