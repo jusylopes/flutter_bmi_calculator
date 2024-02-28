@@ -1,4 +1,4 @@
 class Constants {
-  static String appName = 'BMI Calculator';
+  static String appName = 'Calculadora IMC';
 
 }
