@@ -1,5 +1,4 @@
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
-import 'package:bmi_calculator/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
