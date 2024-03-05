@@ -1,25 +1,24 @@
+import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:bmi_calculator/utils/colors.dart';
 import 'package:bmi_calculator/utils/no_transitions_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppTheme {
   static ThemeData get light => ThemeData(
         primarySwatch: AppColors.colorPrimarySwatch,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        fontFamily: GoogleFonts.robotoCondensed().fontFamily,
+        fontFamily: AssetsManager.fontFamily,
         scaffoldBackgroundColor: AppColors.colorBackground,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           elevation: 0,
           centerTitle: true,
           toolbarHeight: 100,
           backgroundColor: Colors.transparent,
           titleTextStyle: TextStyle(
-              fontFamily: GoogleFonts.robotoCondensed().fontFamily,
-              fontSize: 33.0,
-              color: Colors.black,
-              fontWeight: FontWeight.bold),
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 33),
         ),
+        snackBarTheme: const SnackBarThemeData(
+            contentTextStyle: TextStyle(color: Colors.white)),
         textTheme: _buildTextTheme(),
         pageTransitionsTheme: PageTransitionsTheme(
           builders: {
