@@ -11,12 +11,13 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   flutter:
-    sdk: flutter
-  google_fonts: ^5.1.0
+    sdk: flutter  
+  iconsax: ^0.0.8
   intl: ^0.18.1
   path: ^1.8.3
   provider: ^6.1.1
-  sqflite: ^2.3.0  
+  rive: ^0.12.4
+  sqflite: ^2.3.0
   syncfusion_flutter_sliders: ^24.2.7
 
 dev_dependencies:
@@ -31,6 +32,16 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/male.png
-    - assets/images/female.png
-    - assets/images/empty_results.png
+    - assets/images/character_boy.png
+    - assets/images/character_girl.png
+    - assets/images/box_empty.png
+
+    - assets/animations/character_boy.riv
+    - assets/animations/character_girl.riv
+    
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+
+  
