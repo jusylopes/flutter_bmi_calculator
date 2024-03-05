@@ -41,15 +41,11 @@ class _EmptyResultsMessageState extends State<EmptyResultsMessage>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 5,
+            width: MediaQuery.of(context).size.width / 1.8,
             child: SlideTransition(
               position: _animation,
               child: Image.asset(AssetsManager.imageEmpty),
             ),
-          ),
-          Text(
-            'no results saved =[',
-            style: Theme.of(context).textTheme.titleLarge,
           ),
         ],
       ),
