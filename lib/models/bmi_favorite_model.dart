@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BmiFavoriteSqlModel {
+class BmiFavoriteModel {
   final String id;
   final double weight;
   final double height;
@@ -9,7 +9,7 @@ class BmiFavoriteSqlModel {
   final Color colorClassification;
   final String classification;
 
-  BmiFavoriteSqlModel({
+  BmiFavoriteModel({
     required this.id,
     required this.weight,
     required this.height,
