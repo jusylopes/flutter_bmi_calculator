@@ -1,7 +1,7 @@
 # 🏋️ BMI Calculator
 ## Sobre o projeto
 
- O aplicativo calcula o Índice de Massa Corporal (IMC) com base nas informações de peso e altura fornecidas pelo usuário e armazena os dados utilizando o SQLite.
+ O aplicativo calcula o Índice de Massa Corporal (IMC) com base nas informações de peso e altura fornecidas pelo usuário e persiste os dados salvos utilizando o SQLite.
 
 ## Screenshots
 <p>
@@ -17,10 +17,10 @@
 * Flutter
 * Provider
 * SQLite
-* Testes
+* Rive
 
 
 ### Desenvolvedora
 
 Jusy Lopes
-https://www.linkedin.com/in/jusylopes
+https://www.linkedin.com/in/jusy-lopes
