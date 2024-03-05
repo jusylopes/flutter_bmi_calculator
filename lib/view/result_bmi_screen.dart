@@ -1,10 +1,9 @@
-import 'package:bmi_calculator/models/bmi_model.dart';
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:bmi_calculator/view/components/favorite_buton.dart';
+import 'package:bmi_calculator/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'home_screen.dart';
 
 class ResultBmiScreen extends StatelessWidget {
   const ResultBmiScreen({super.key});
@@ -28,9 +27,8 @@ class ResultBmiScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Image.asset(
-                    bmi.selectedCaracter == Caracter.MALE
-                        ? AssetsManager.imageMale
-                        : AssetsManager.imageFemale,
+                    AssetsManager.getCharacterAsset(
+                        bmi.selectedCharacter, false),
                     fit: BoxFit.fill,
                     color: bmi.getResultColor(),
                     height: MediaQuery.of(context).size.height / 3,

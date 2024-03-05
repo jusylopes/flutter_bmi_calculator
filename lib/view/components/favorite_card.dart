@@ -1,4 +1,4 @@
-import 'package:bmi_calculator/models/bmi_favorite_sql_model.dart';
+import 'package:bmi_calculator/models/bmi_favorite_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -8,7 +8,7 @@ class FavoriteCard extends StatelessWidget {
     required this.favoriteItem,
   });
 
-  final BmiFavoriteSqlModel favoriteItem;
+  final BmiFavoriteModel favoriteItem;
 
   @override
   Widget build(BuildContext context) {
