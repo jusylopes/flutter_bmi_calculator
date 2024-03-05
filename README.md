@@ -7,7 +7,7 @@
 <p>
 <img src="screenshots/Screenshot_1.png" width="19%">
 <img src="screenshots/Screenshot_2.png" width="19%">
-<img src="screenshots/bmi_calculator.gif" width="18.8%">
+<img src="screenshots/bmi_calculator.gif" width="19%">
 </p>
 
 
