@@ -5,9 +5,9 @@
 
 ## Screenshots
 <p>
-<img src="screenshots/Screenshot_1.png" width="19%">
-<img src="screenshots/Screenshot_2.png" width="19%">
-<img src="screenshots/bmi_calculator.gif" width="19%">
+<img src="screenshots/Screenshot_1.png" width="22%">
+<img src="screenshots/Screenshot_2.png" width="22%">
+<img src="screenshots/bmi_calculator.gif" width="21.9%">
 </p>
 
 
