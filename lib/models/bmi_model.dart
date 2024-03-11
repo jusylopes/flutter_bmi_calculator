@@ -1,17 +1,17 @@
 class BmiModel {
   double weight;
   double height;
-  Caracter gender;
+  Character character;
 
   BmiModel({
     required this.weight,
     required this.height,
-    required this.gender,
+    required this.character,
   });
 }
 
-enum Caracter {
-  MALE,
-  FEMALE,
-  NULL,
+enum Character {
+  boy,
+  girl,
+  nonBinary,
 }
