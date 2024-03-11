@@ -13,10 +13,9 @@ class AnimationCharacterBmi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.transparent,
-      height: MediaQuery.of(context).size.height / 1.8,
-      width: MediaQuery.of(context).size.width / 1.8,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 1.7,
+      width: MediaQuery.of(context).size.width / 1.7,
       child: RiveAnimation.asset(
         AssetsManager.getCharacterAsset(character, true),
       ),

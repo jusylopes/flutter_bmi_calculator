@@ -1,5 +1,5 @@
 import 'package:bmi_calculator/controllers/favorite_controller.dart';
-import 'package:bmi_calculator/models/bmi_favorite_sql_model.dart';
+import 'package:bmi_calculator/models/bmi_favorite_model.dart';
 import 'package:bmi_calculator/repository/bmi_favorite_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,7 +19,7 @@ void main() {
 
     test('startDatabase should load bmis from repository', () async {
       when(() => mockRepository.getBmis()).thenAnswer((_) async => [
-            BmiFavoriteSqlModel(
+            BmiFavoriteModel(
               id: '1',
               bmi: 25.0,
               date: DateTime.now(),
@@ -28,7 +28,7 @@ void main() {
               classification: 'Normal',
               colorClassification: const Color(0x000ff00f),
             ),
-            BmiFavoriteSqlModel(
+            BmiFavoriteModel(
               id: '2',
               bmi: 25.0,
               date: DateTime.now(),
