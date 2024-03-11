@@ -1,6 +1,6 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/models/bmi_favorite_sql_model.dart';
+import 'package:bmi_calculator/models/bmi_favorite_model.dart';
 import 'package:bmi_calculator/repository/bmi_favorite_repository.dart';
 
 class FavoriteController extends ChangeNotifier {
@@ -8,15 +8,15 @@ class FavoriteController extends ChangeNotifier {
 
   FavoriteController(this._repository);
 
-  final List<BmiFavoriteSqlModel> _bmiList = [];
-  UnmodifiableListView<BmiFavoriteSqlModel> get bmis =>
+  final List<BmiFavoriteModel> _bmiList = [];
+  UnmodifiableListView<BmiFavoriteModel> get bmis =>
       UnmodifiableListView(_bmiList);
 
   Future<void> startDatabase() async {
     await getBmis();
   }
 
-  Future<void> saveBmi({required BmiFavoriteSqlModel bmi}) async {
+  Future<void> saveBmi({required BmiFavoriteModel bmi}) async {
     _bmiList.add(bmi);
     notifyListeners();
   }
@@ -34,8 +34,12 @@ class FavoriteController extends ChangeNotifier {
 
   Future<void> getBmis() async {
     final bmis = await _repository.getBmis();
-    _bmiList.addAll(bmis.whereType<BmiFavoriteSqlModel>());
+    _bmiList.addAll(bmis.whereType<BmiFavoriteModel>());
 
     notifyListeners();
+  }
+
+  bool toggleBmi({required BmiFavoriteModel bmi}) {
+    return _bmiList.contains(bmi);
   }
 }
