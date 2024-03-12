@@ -1,12 +1,12 @@
 import 'package:bmi_calculator/database/database_helper.dart';
-import 'package:bmi_calculator/models/bmi_favorite_sql_model.dart';
+import 'package:bmi_calculator/models/bmi_favorite_model.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 
 class BmiFavoriteRepository {
   final DatabaseHelper _databaseHelper = DatabaseHelper.instance;
 
-  Future<void> saveBmi(BmiFavoriteSqlModel bmi) async {
+  Future<void> saveBmi(BmiFavoriteModel bmi) async {
     final Database db = await _databaseHelper.database;
     try {
       await db.insert(DatabaseHelper.bmiTable, bmi.toMap());
@@ -24,7 +24,7 @@ class BmiFavoriteRepository {
     );
   }
 
-  Future<List<BmiFavoriteSqlModel?>> getBmis() async {
+  Future<List<BmiFavoriteModel?>> getBmis() async {
     try {
       final Database db = await _databaseHelper.database;
       final List<Map<String, dynamic>> maps =
@@ -32,7 +32,7 @@ class BmiFavoriteRepository {
 
       return List.generate(maps.length, (i) {
         try {
-          return BmiFavoriteSqlModel(
+          return BmiFavoriteModel(
             id: maps[i][DatabaseHelper.columnId],
             bmi: maps[i][DatabaseHelper.columnBmi],
             height: maps[i][DatabaseHelper.columnHeight],
@@ -45,9 +45,9 @@ class BmiFavoriteRepository {
           );
         } catch (e) {
           print('Error parsing data at index $i: $e');
-          return null; 
+          return null;
         }
-      }).where((item) => item != null).toList(); 
+      }).where((item) => item != null).toList();
     } catch (e) {
       print('Error getting BMIs: $e');
       return [];
