@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/controllers/favorite_controller.dart';
-import 'package:bmi_calculator/models/bmi_favorite_sql_model.dart';
+import 'package:bmi_calculator/models/bmi_favorite_model.dart';
 import 'package:bmi_calculator/utils/colors.dart';
 import 'package:bmi_calculator/utils/snackbar_utils.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class FavoriteButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () async {
-        final bmiFavorite = BmiFavoriteSqlModel(
+        final bmiFavorite = BmiFavoriteModel(
             id: Random().nextInt(1000000).toString(),
             height: bmi.height,
             weight: bmi.weight,
