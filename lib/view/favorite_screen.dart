@@ -1,7 +1,6 @@
 import 'package:bmi_calculator/controllers/favorite_controller.dart';
 import 'package:bmi_calculator/view/components/empty_results_message.dart';
 import 'package:bmi_calculator/view/components/favorite_card.dart';
-import 'package:bmi_calculator/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,19 +21,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Resultados salvos',
-            maxLines: 2, textAlign: TextAlign.center),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-            );
-          },
-        ),
-      ),
       body: Center(
         child: Consumer<FavoriteController>(
           builder: (context, favorites, child) {
