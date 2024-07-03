@@ -12,21 +12,32 @@ class FavoriteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Text(
-        favoriteItem.bmi.toStringAsFixed(1),
-        style: Theme.of(context).textTheme.titleLarge,
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 4,
       ),
-      title: Text(
-        favoriteItem.classification,
-        style: Theme.of(context).textTheme.titleMedium,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30),
+        child: Container(
+          color: favoriteItem.colorClassification,
+          child: ListTile(
+            leading: Text(
+              favoriteItem.bmi.toStringAsFixed(1),
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            title: Text(
+              favoriteItem.classification,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            subtitle: Text(
+              formatDate(favoriteItem.date.toString()),
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+            trailing: const Icon(Icons.arrow_back_ios),
+          ),
+        ),
       ),
-      subtitle: Text(
-        formatDate(favoriteItem.date.toString()),
-        style: Theme.of(context).textTheme.titleSmall,
-      ),
-      tileColor: favoriteItem.colorClassification,
-      trailing: const Icon(Icons.arrow_back_ios),
     );
   }
 }
