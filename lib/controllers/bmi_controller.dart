@@ -1,4 +1,3 @@
-
 import 'package:bmi_calculator/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/models/bmi_model.dart';
@@ -60,15 +59,13 @@ class BmiController with ChangeNotifier {
     double bmi = bmiValue;
 
     if (bmi < 17) {
-      return AppColors.colorBmiGrey;
+      return AppColors.colorBmiRed;
     } else if (bmi < 24.5) {
       return AppColors.colorBmiGreen;
     } else if (bmi < 34.9) {
       return AppColors.colorBmiOrange;
     } else {
-      return Colors.red;
+      return AppColors.colorBmiRed;
     }
   }
-
-  
 }
