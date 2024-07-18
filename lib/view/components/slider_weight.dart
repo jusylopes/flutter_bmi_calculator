@@ -54,7 +54,7 @@ class SliderWeight extends StatelessWidget {
             padding: const EdgeInsets.all(15),
             width: MediaQuery.of(context).size.width / 1.5,
             child: SfSliderTheme(
-              data: SfSliderThemeData(
+              data: const SfSliderThemeData(
                 activeTrackHeight: 60,
                 inactiveTrackHeight: 60,
               ),
