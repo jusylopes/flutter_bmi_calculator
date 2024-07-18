@@ -1,9 +1,13 @@
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
+import 'package:bmi_calculator/controllers/favorite_controller.dart';
+import 'package:bmi_calculator/models/bmi_favorite_model.dart';
 import 'package:bmi_calculator/utils/assets_manager.dart';
-import 'package:bmi_calculator/view/components/favorite_buton.dart';
-import 'package:bmi_calculator/view/home_screen.dart';
+import 'package:bmi_calculator/utils/snackbar_utils.dart';
+import 'package:bmi_calculator/view/components/score_bmi_progress_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'dart:math' as math;
 
 class ResultBmiScreen extends StatelessWidget {
   const ResultBmiScreen({super.key});
@@ -24,48 +28,74 @@ class ResultBmiScreen extends StatelessWidget {
                   bmi.bmiValue.toStringAsFixed(2),
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    AssetsManager.getCharacterAsset(
-                        bmi.selectedCharacter, false),
-                    fit: BoxFit.fill,
-                    color: bmi.getResultColor(),
-                    height: MediaQuery.of(context).size.height / 3,
-                  ),
+                Image.asset(
+                  AssetsManager.getCharacterAsset(bmi.selectedCharacter, false),
+                  fit: BoxFit.fill,
+                  color: bmi.getResultColor(),
+                  height: MediaQuery.of(context).size.height / 3,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Text(
-                    bmi.getResultString(),
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
+                const SizedBox(
+                  height: 18,
                 ),
+                Text(
+                  bmi.getResultString(),
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                Text(
+                  DateFormat('dd MMM yyyy').format(DateTime.now()),
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                ScoreBmiProgressIndicator(bmi: bmi),
+                const SizedBox(
+                  height: 12,
+                )
               ],
             ),
             ElevatedButton(
-              onPressed: () => _recalculateBMI(context),
+              onPressed: () => _saveBMI(bmi: bmi, context: context),
               style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
               child: Text(
-                'Recalcule um IMC',
+                'Salvar resultado',
                 style: Theme.of(context).textTheme.titleSmall,
               ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FavoriteButton(bmi: bmi),
     );
   }
-}
 
-void _recalculateBMI(BuildContext context) {
-  final bmiContoller = Provider.of<BmiController>(context, listen: false);
-  bmiContoller.resetValues();
+  void _saveBMI(
+      {required BuildContext context, required BmiController bmi}) async {
+    final random = math.Random();
 
-  Navigator.pushAndRemoveUntil(
-    context,
-    MaterialPageRoute(builder: (context) => const HomeScreen()),
-    (route) => false,
-  );
+    final bmiFavorite = BmiFavoriteModel(
+        id: random.nextInt(1000000).toString(),
+        height: bmi.height,
+        weight: bmi.weight,
+        bmi: bmi.bmiValue,
+        date: DateTime.now(),
+        colorClassification: bmi.getResultColor(),
+        classification: bmi.getResultString());
+
+    try {
+      await Provider.of<FavoriteController>(context, listen: false)
+          .saveBmi(bmi: bmiFavorite);
+
+      if (context.mounted) {
+        SnackbarUtils.showSnackBar(
+            context: context, text: 'IMC salvo com sucesso.');
+      }
+    } catch (e) {
+      if (context.mounted) {
+        SnackbarUtils.showSnackBar(
+            context: context, text: 'Falha ao salvar IMC.');
+      }
+    }
+
+    
+  }
 }
