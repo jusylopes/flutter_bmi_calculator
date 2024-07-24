@@ -5,7 +5,7 @@ class SnackBarHelper {
       {required BuildContext ctx, required String message}) {
     ScaffoldMessenger.of(ctx).showSnackBar(
       SnackBar(
-        backgroundColor: Theme.of(ctx).primaryColor,
+        backgroundColor: Theme.of(ctx).primaryColor.withOpacity(0.3),
         content: Text(message, style: Theme.of(ctx).textTheme.titleSmall),
         duration: const Duration(seconds: 2),
       ),

@@ -1,6 +1,6 @@
 import 'package:bmi_calculator/controllers/favorite_controller.dart';
 import 'package:bmi_calculator/models/bmi_favorite_model.dart';
-import 'package:bmi_calculator/repository/bmi_favorite_repository.dart';
+import 'package:bmi_calculator/repositories/bmi_favorite_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
