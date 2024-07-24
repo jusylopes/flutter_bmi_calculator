@@ -1,7 +1,7 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/models/bmi_favorite_model.dart';
-import 'package:bmi_calculator/repository/bmi_favorite_repository.dart';
+import 'package:bmi_calculator/repositories/bmi_favorite_repository.dart';
 
 class FavoriteController extends ChangeNotifier {
   final BmiFavoriteRepository _repository;
@@ -17,7 +17,9 @@ class FavoriteController extends ChangeNotifier {
   }
 
   Future<void> saveBmi({required BmiFavoriteModel bmi}) async {
+    await _repository.saveBmi(bmi);
     _bmiList.add(bmi);
+
     notifyListeners();
   }
 
@@ -37,9 +39,5 @@ class FavoriteController extends ChangeNotifier {
     _bmiList.addAll(bmis.whereType<BmiFavoriteModel>());
 
     notifyListeners();
-  }
-
-  bool toggleBmi({required BmiFavoriteModel bmi}) {
-    return _bmiList.contains(bmi);
   }
 }

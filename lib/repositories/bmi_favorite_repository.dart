@@ -11,7 +11,7 @@ class BmiFavoriteRepository {
     try {
       await db.insert(DatabaseHelper.bmiTable, bmi.toMap());
     } catch (e) {
-      print('Erro ao inserir no banco de dados: $e');
+      debugPrint('Erro ao inserir no banco de dados: $e');
     }
   }
 
@@ -26,30 +26,24 @@ class BmiFavoriteRepository {
 
   Future<List<BmiFavoriteModel?>> getBmis() async {
     try {
-      final Database db = await _databaseHelper.database;
-      final List<Map<String, dynamic>> maps =
-          await db.query(DatabaseHelper.bmiTable);
+      final Database database = await _databaseHelper.database;
+      final List<Map<String, dynamic>> resultMaps =
+          await database.query(DatabaseHelper.bmiTable);
 
-      return List.generate(maps.length, (i) {
-        try {
-          return BmiFavoriteModel(
-            id: maps[i][DatabaseHelper.columnId],
-            bmi: maps[i][DatabaseHelper.columnBmi],
-            height: maps[i][DatabaseHelper.columnHeight],
-            weight: maps[i][DatabaseHelper.columnWeight],
-            date: DateTime.fromMillisecondsSinceEpoch(
-                int.parse(maps[i][DatabaseHelper.columnDate])),
-            classification: maps[i][DatabaseHelper.columnClassification],
-            colorClassification: Color(
-                int.parse(maps[i][DatabaseHelper.columnColorClassification])),
-          );
-        } catch (e) {
-          print('Error parsing data at index $i: $e');
-          return null;
-        }
-      }).where((item) => item != null).toList();
-    } catch (e) {
-      print('Error getting BMIs: $e');
+      return resultMaps
+          .map((resultMap) {
+            try {
+              return BmiFavoriteModel.fromMap(resultMap);
+            } catch (error) {
+              debugPrint(
+                  'Erro ao converter mapa para modelo: $error com dados: $resultMap');
+              return null;
+            }
+          })
+          .where((bmiFavoriteModel) => bmiFavoriteModel != null)
+          .toList();
+    } catch (error) {
+      debugPrint('Erro ao obter IMCs do banco de dados: $error');
       return [];
     }
   }
