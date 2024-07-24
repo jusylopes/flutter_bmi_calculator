@@ -11,14 +11,17 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   flutter:
-    sdk: flutter  
+    sdk: flutter
   iconsax: ^0.0.8
   intl: ^0.18.1
   path: ^1.8.3
   provider: ^6.1.1
   rive: ^0.12.4
+  shared_preferences: ^2.2.3
   sqflite: ^2.3.0
-  syncfusion_flutter_sliders: ^24.2.7
+  syncfusion_flutter_charts: ^26.1.42
+  syncfusion_flutter_core: ^26.1.42
+  syncfusion_flutter_sliders: ^26.1.42
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -38,10 +41,8 @@ flutter:
 
     - assets/animations/character_boy.riv
     - assets/animations/character_girl.riv
-    
+
   fonts:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Regular.ttf
-
-  
