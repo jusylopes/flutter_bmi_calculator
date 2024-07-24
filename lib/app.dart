@@ -1,6 +1,6 @@
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/controllers/favorite_controller.dart';
-import 'package:bmi_calculator/repository/bmi_favorite_repository.dart';
+import 'package:bmi_calculator/repositories/bmi_favorite_repository.dart';
 import 'package:bmi_calculator/view/home_screen.dart';
 import 'package:bmi_calculator/utils/theme.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'IMC Calculadora',
+        
         home: const HomeScreen(),
         theme: AppTheme.light,
       ),

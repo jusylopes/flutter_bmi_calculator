@@ -1,6 +1,7 @@
 import 'package:bmi_calculator/controllers/favorite_controller.dart';
 import 'package:bmi_calculator/view/components/empty_results_message.dart';
 import 'package:bmi_calculator/view/components/favorite_card.dart';
+import 'package:bmi_calculator/view/components/favorite_bmi_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,31 +22,37 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Consumer<FavoriteController>(
-          builder: (context, favorites, child) {
-            return favorites.bmis.isEmpty
-                ? const EmptyResultsMessage()
-                : ListView.builder(
-                    itemCount: favorites.bmis.length,
-                    itemBuilder: (_, index) {
-                      final favoriteItem = favorites.bmis[index];
+      body: Consumer<FavoriteController>(
+        builder: (context, favorites, child) {
+          return favorites.bmis.isEmpty
+              ? const EmptyResultsMessage()
+              : Column(
+                  children: [
+                    FavoriteBmiChart(favoriteList: favorites.bmis),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: favorites.bmis.length,
+                        itemBuilder: (_, index) {
+                          final favoriteItem = favorites.bmis[index];
 
-                      return Dismissible(
-                        key: UniqueKey(),
-                        onDismissed: (direction) {
-                          favorites.deleteBmi(id: favoriteItem.id.toString());
+                          return Dismissible(
+                            key: UniqueKey(),
+                            onDismissed: (direction) {
+                              favorites.deleteBmi(
+                                  id: favoriteItem.id.toString());
+                            },
+                            direction: DismissDirection.endToStart,
+                            confirmDismiss: (_) async {
+                              return await _confirmDismissDialog(context);
+                            },
+                            child: FavoriteCard(favoriteItem: favoriteItem),
+                          );
                         },
-                        direction: DismissDirection.endToStart,
-                        confirmDismiss: (_) async {
-                          return await _confirmDismissDialog(context);
-                        },
-                        child: FavoriteCard(favoriteItem: favoriteItem),
-                      );
-                    },
-                  );
-          },
-        ),
+                      ),
+                    ),
+                  ],
+                );
+        },
       ),
     );
   }

@@ -20,16 +20,36 @@ class BmiFavoriteModel {
   });
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
+    return {
+      'id': id,
+      'weight': weight,
+      'height': height,
+      'bmi': bmi,
+      'date': date.millisecondsSinceEpoch,
+      'colorClassification': colorClassification.value,
+      'classification': classification,
+    };
+  }
 
-    result.addAll({'id': id});
-    result.addAll({'weight': weight});
-    result.addAll({'height': height});
-    result.addAll({'bmi': bmi});
-    result.addAll({'date': date.millisecondsSinceEpoch});
-    result.addAll({'colorClassification': colorClassification.value});
-    result.addAll({'classification': classification});
-
-    return result;
+  static BmiFavoriteModel fromMap(Map<String, dynamic> map) {
+    return BmiFavoriteModel(
+      id: map['id'].toString(),
+      weight: map['weight'] is double
+          ? map['weight'] as double
+          : double.parse(map['weight'].toString()),
+      height: map['height'] is double
+          ? map['height'] as double
+          : double.parse(map['height'].toString()),
+      bmi: map['bmi'] is double
+          ? map['bmi'] as double
+          : double.parse(map['bmi'].toString()),
+      date: DateTime.fromMillisecondsSinceEpoch(map['date'] is int
+          ? map['date'] as int
+          : int.parse(map['date'].toString())),
+      colorClassification: Color(map['colorClassification'] is int
+          ? map['colorClassification'] as int
+          : int.parse(map['colorClassification'].toString())),
+      classification: map['classification'].toString(),
+    );
   }
 }
