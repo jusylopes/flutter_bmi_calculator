@@ -25,6 +25,7 @@ class SliderHeight extends StatelessWidget {
             data: SfSliderThemeData(
               activeTrackHeight: 30,
               inactiveTrackHeight: 30,
+              inactiveTrackColor: Colors.grey.withOpacity(0.4),
             ),
             child: SfSlider.vertical(
               value: bmiController.height,
