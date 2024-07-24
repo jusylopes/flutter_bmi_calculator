@@ -5,7 +5,7 @@ class SnackbarUtils {
   static void showSnackBar({required context, required text}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: AppColors.colorBmiYellow,
         content: Text(
           text,
           style: Theme.of(context).textTheme.titleSmall,

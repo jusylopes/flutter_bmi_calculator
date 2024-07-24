@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primaryColor = Color(0xFF2F2A6C);
+  static const Color primaryColor = Color(0xFFF4A20F);
   static MaterialColor createMaterialColor(Color color) {
     List<Color> shades = [
       color.withOpacity(0.1),

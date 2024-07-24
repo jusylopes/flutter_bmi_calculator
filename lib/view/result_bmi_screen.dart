@@ -4,6 +4,7 @@ import 'package:bmi_calculator/models/bmi_favorite_model.dart';
 import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:bmi_calculator/utils/snackbar_utils.dart';
 import 'package:bmi_calculator/view/components/score_bmi_progress_indicator.dart';
+import 'package:bmi_calculator/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +56,10 @@ class ResultBmiScreen extends StatelessWidget {
               ],
             ),
             ElevatedButton(
-              onPressed: () => _saveBMI(bmi: bmi, context: context),
+              onPressed: () {
+                _saveBMI(bmi: bmi, context: context);
+                _navigateFavoriteScreen(context);
+              },
               style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
               child: Text(
                 'Salvar resultado',
@@ -95,7 +99,14 @@ class ResultBmiScreen extends StatelessWidget {
             context: context, text: 'Falha ao salvar IMC.');
       }
     }
+  }
 
-    
+  void _navigateFavoriteScreen(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const HomeScreen(initialTabIndex: 1),
+      ),
+    );
   }
 }

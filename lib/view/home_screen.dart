@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final int initialTabIndex;
+  const HomeScreen({super.key, this.initialTabIndex = 0});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
   final List<Widget> _pages = [
     const SelectCharacterScreen(),
-    const FavoriteScreen(),
     const FavoriteScreen(),
   ];
 
@@ -22,6 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
     'Selecione um personagem',
     'Resultados salvos',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialTabIndex;
+  }
 
   void _onItemTapped(int index) {
     setState(() {
