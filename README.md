@@ -17,6 +17,7 @@
 * Provider
 * SQLite
 * Rive
+* SharedPreferences
 
 
 ### Desenvolvedora
