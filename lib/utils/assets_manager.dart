@@ -1,4 +1,4 @@
-import 'package:bmi_calculator/models/bmi_model.dart';
+import 'package:bmi_calculator/models/character.dart';
 
 class AssetsManager {
   static String fontFamily = 'assets/fonts/Roboto-Regular.ttf';

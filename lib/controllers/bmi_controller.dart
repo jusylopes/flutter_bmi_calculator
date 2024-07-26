@@ -7,12 +7,10 @@ class BmiController with ChangeNotifier {
   final BmiModel _bmiModel = BmiModel(
     height: 160,
     weight: 60,
-    character: Character.nonBinary,
   );
 
   double get height => _bmiModel.height;
   double get weight => _bmiModel.weight;
-  Character get selectedCharacter => _bmiModel.character;
   double get bmiValue => _bmiModel.weight / pow(_bmiModel.height / 100, 2);
 
   void updateHeight(double height) {
@@ -25,15 +23,9 @@ class BmiController with ChangeNotifier {
     notifyListeners();
   }
 
-  void selectCharacter(Character character) {
-    _bmiModel.character = character;
-    notifyListeners();
-  }
-
   void resetValues() {
     _bmiModel.height = 160;
     _bmiModel.weight = 60;
-    _bmiModel.character = Character.nonBinary;
     notifyListeners();
   }
 
