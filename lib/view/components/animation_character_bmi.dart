@@ -1,4 +1,4 @@
-import 'package:bmi_calculator/models/bmi_model.dart';
+import 'package:bmi_calculator/models/character.dart';
 import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
