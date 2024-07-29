@@ -12,7 +12,7 @@ abstract class AppTheme {
         appBarTheme: const AppBarTheme(
           elevation: 0,
           centerTitle: true,
-          toolbarHeight: 130,
+          toolbarHeight: 80,
           backgroundColor: Colors.transparent,
           titleTextStyle: TextStyle(
               color: Colors.black, fontWeight: FontWeight.bold, fontSize: 33),
