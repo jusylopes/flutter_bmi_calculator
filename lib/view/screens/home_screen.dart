@@ -1,9 +1,9 @@
 import 'package:bmi_calculator/blocs/character/character_cubit.dart';
 import 'package:bmi_calculator/blocs/character/character_state.dart';
+import 'package:bmi_calculator/view/components/custom_bottom_navigation_bar.dart';
 import 'package:bmi_calculator/view/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iconsax/iconsax.dart';
 
 class HomeScreen extends StatefulWidget {
   final int initialTabIndex;
@@ -46,21 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
           return _pages.elementAt(_selectedIndex);
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        iconSize: 25,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Iconsax.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Iconsax.archive_1),
-            label: 'Resultados',
-          )
-        ],
-      ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+          selectedIndex: _selectedIndex, onItemTapped: _onItemTapped),
     );
   }
 }

@@ -23,8 +23,10 @@ class CharacterScreen extends StatelessWidget {
           ),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.more_vert_rounded),
-          onPressed: () {},
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: Center(

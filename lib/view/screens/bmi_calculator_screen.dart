@@ -31,27 +31,28 @@ class BmiCalculatorScreen extends StatelessWidget {
         ],
         leading: const CharacterChangeMenu(),
       ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BlocBuilder<CharacterCubit, CharacterState>(
-                builder: (context, state) {
-                  if (state is CharacterSelectedState) {
-                    return AnimationCharacterBmi(character: state.character);
-                  }
-                  return const CircularProgressIndicator();
-                },
-              ),
-              const SizedBox(width: 5),
-              SliderHeight(bmiController: bmiController),
-            ],
-          ),
-          SliderWeight(bmiController: bmiController),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                BlocBuilder<CharacterCubit, CharacterState>(
+                  builder: (context, state) {
+                    if (state is CharacterSelectedState) {
+                      return AnimationCharacterBmi(character: state.character);
+                    }
+                    return const CircularProgressIndicator();
+                  },
+                ),
+                const SizedBox(width: 5),
+                SliderHeight(bmiController: bmiController),
+              ],
+            ),
+            SliderWeight(bmiController: bmiController),
+          ],
+        ),
       ),
     );
   }
 }
-

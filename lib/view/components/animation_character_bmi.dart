@@ -15,7 +15,7 @@ class AnimationCharacterBmi extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height / 1.7,
-      width: MediaQuery.of(context).size.width / 1.7,
+      width: MediaQuery.of(context).size.width / 1.8,
       child: RiveAnimation.asset(
         AssetsManager.getCharacterAsset(character, true),
       ),

@@ -2,7 +2,7 @@ import 'package:bmi_calculator/blocs/character/character_cubit.dart';
 import 'package:bmi_calculator/models/character.dart';
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/utils/assets_manager.dart';
-import 'package:bmi_calculator/view/bmi_calculator_screen.dart';
+import 'package:bmi_calculator/view/screens/bmi_calculator_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

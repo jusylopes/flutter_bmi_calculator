@@ -1,5 +1,5 @@
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
-import 'package:bmi_calculator/utils/colors.dart';
+import 'package:bmi_calculator/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class ScoreBmiProgressIndicator extends StatelessWidget {
