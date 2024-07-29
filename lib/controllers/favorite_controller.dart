@@ -35,6 +35,8 @@ class FavoriteController extends ChangeNotifier {
   }
 
   Future<void> getBmis() async {
+    _bmiList.clear();
+    
     final bmis = await _repository.getBmis();
     _bmiList.addAll(bmis.whereType<BmiFavoriteModel>());
 
