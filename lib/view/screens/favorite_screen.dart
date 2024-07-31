@@ -29,12 +29,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             textAlign: TextAlign.center,
           ),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        leading: const Icon(Icons.arrow_forward_ios),
       ),
       body: Consumer<FavoriteController>(
         builder: (context, favorites, child) {
@@ -71,26 +66,57 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   }
 
   Future<bool?> _confirmDismissDialog(BuildContext context) {
+    ButtonStyle buttonStyle(Color color) {
+      return ButtonStyle(
+        backgroundColor: WidgetStateProperty.all<Color>(color),
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18.0),
+          ),
+        ),
+      );
+    }
+
     return showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Confirmar'),
-          content: const Text('Tem certeza que deseja deletar este resultado?'),
+          content: const Text('Tem certeza que deseja excluir este resultado?'),
           actions: <Widget>[
-            TextButton(
-                onPressed: () => Navigator.of(context).pop(true),
-                child: const Text(
-                  'DELETE',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: const Text(
-                'CANCELAR',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
+            Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () => Navigator.of(context).pop(true),
+                    style: buttonStyle(Theme.of(context).primaryColor),
+                    child: const Text(
+                      'EXCLUIR',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    style: buttonStyle(
+                        Theme.of(context).primaryColor.withOpacity(0.7)),
+                    child: const Text(
+                      'CANCELAR',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         );
       },
