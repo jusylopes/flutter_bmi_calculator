@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 
 abstract class AppTheme {
   static ThemeData get light => ThemeData(
-        primarySwatch: AppColors.colorPrimarySwatch,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppColors.seedColor,
+          primary: AppColors.primaryColor,
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: AssetsManager.fontFamily,
-        scaffoldBackgroundColor: AppColors.colorBackground,
+        scaffoldBackgroundColor: AppColors.colorScaffoldBackground,
         appBarTheme: const AppBarTheme(
           elevation: 0,
           centerTitle: true,
