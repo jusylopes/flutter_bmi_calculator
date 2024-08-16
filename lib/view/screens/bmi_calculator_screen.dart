@@ -1,6 +1,7 @@
 import 'package:bmi_calculator/blocs/character/character_cubit.dart';
 import 'package:bmi_calculator/blocs/character/character_state.dart';
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
+import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:bmi_calculator/view/components/components.dart';
 import 'package:bmi_calculator/view/screens/screens.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,14 @@ class BmiCalculatorScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Selecione seu peso e altura',
-            maxLines: 2, textAlign: TextAlign.center),
+        title: Text(
+          'Selecione seu peso e altura',
+          maxLines: 2,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: AssetsManager.fontFamilyPixel,
+          ),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_forward_ios),
@@ -35,17 +42,22 @@ class BmiCalculatorScreen extends StatelessWidget {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                BlocBuilder<CharacterCubit, CharacterState>(
-                  builder: (context, state) {
-                    if (state is CharacterSelectedState) {
-                      return AnimationCharacterBmi(character: state.character);
-                    }
-                    return const CircularProgressIndicator();
-                  },
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 1.7,
+                  width: MediaQuery.of(context).size.width / 1.6,
+                  child: BlocBuilder<CharacterCubit, CharacterState>(
+                    builder: (context, state) {
+                      if (state is CharacterLoadingState) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (state is CharacterSelectedState) {
+                        return AnimationCharacterBmi(
+                            character: state.character);
+                      }
+                      return const Center(child: CircularProgressIndicator());
+                    },
+                  ),
                 ),
-                const SizedBox(width: 5),
                 SliderHeight(bmiController: bmiController),
               ],
             ),
