@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
+import 'package:bmi_calculator/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -68,9 +69,22 @@ class _SliderWeightState extends State<SliderWeight> {
                   keyboardType:
                       const TextInputType.numberWithOptions(decimal: true),
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.titleLarge,
-                  decoration: const InputDecoration(
-                      suffixText: 'Kg', border: InputBorder.none),
+                  style: TextStyle(
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontFamily: AssetsManager.fontFamilyPixel,
+                  ),
+                  decoration: InputDecoration(
+                    suffixText: 'Kg',
+                    border: InputBorder.none,
+                    suffixStyle: TextStyle(
+                      fontSize: 50.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontFamily: AssetsManager.fontFamilyPixel,
+                    ),
+                  ),
                   onSubmitted: (value) => _updateWeightFromInput(),
                 ),
               ),
