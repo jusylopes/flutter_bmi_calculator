@@ -10,7 +10,7 @@ abstract class AppTheme {
           primary: AppColors.primaryColor,
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        fontFamily: AssetsManager.fontFamily,
+        fontFamily: AssetsManager.fontFamilyPixel,
         scaffoldBackgroundColor: AppColors.colorScaffoldBackground,
         appBarTheme: const AppBarTheme(
           elevation: 0,
@@ -32,18 +32,19 @@ abstract class AppTheme {
       );
 
   static TextTheme _buildTextTheme() {
-    return const TextTheme(
+    return TextTheme(
       titleLarge: TextStyle(
         fontSize: 38.0,
         fontWeight: FontWeight.bold,
         color: Colors.black,
+        fontFamily: AssetsManager.fontFamilyPixel,
       ),
-      titleMedium: TextStyle(
+      titleMedium: const TextStyle(
         fontSize: 22.0,
         fontWeight: FontWeight.bold,
         color: Colors.black,
       ),
-      titleSmall: TextStyle(
+      titleSmall: const TextStyle(
         fontSize: 20.0,
         fontWeight: FontWeight.w600,
         color: Colors.black,
