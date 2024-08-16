@@ -33,13 +33,20 @@ dev_dependencies:
   mocktail: ^1.0.3
 
 flutter:
-
+  fonts:
+    - family: Pixels
+      fonts:
+        - asset: assets/fonts/Pixels.otf
   uses-material-design: true
 
   assets:
     - assets/images/background.png    
     - assets/images/box_empty.png
     - assets/images/scale.png
+    - assets/images/boy.png
+    - assets/images/girl.png
+    - assets/images/monster.png
+    - assets/images/ogre.png
     - assets/animations/character_boy_sad.riv
     - assets/animations/character_boy.riv
     - assets/animations/character_girl_sad.riv
@@ -49,10 +56,7 @@ flutter:
     - assets/animations/character_ogre_sad.riv
     - assets/animations/character_ogre.riv
 
-  fonts:
-    - family: Pixels
-      fonts:
-        - asset: assets/fonts/Pixels.otf
+
  
   
 
