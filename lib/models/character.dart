@@ -1,6 +1,7 @@
 enum Character {
   boy,
   girl,
-  nonBinary,
+  monster,
+  ogre
 }
 

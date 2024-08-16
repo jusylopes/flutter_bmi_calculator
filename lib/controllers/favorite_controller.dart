@@ -4,9 +4,9 @@ import 'package:bmi_calculator/models/bmi_favorite_model.dart';
 import 'package:bmi_calculator/repositories/bmi_favorite_repository.dart';
 
 class FavoriteController extends ChangeNotifier {
-  final BmiFavoriteRepository _repository;
-
   FavoriteController(this._repository);
+
+  final BmiFavoriteRepository _repository;
 
   final List<BmiFavoriteModel> _bmiList = [];
   UnmodifiableListView<BmiFavoriteModel> get bmis =>
@@ -36,7 +36,7 @@ class FavoriteController extends ChangeNotifier {
 
   Future<void> getBmis() async {
     _bmiList.clear();
-    
+
     final bmis = await _repository.getBmis();
     _bmiList.addAll(bmis.whereType<BmiFavoriteModel>());
 

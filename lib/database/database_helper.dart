@@ -2,6 +2,9 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
+  DatabaseHelper._privateConstructor();
+
+  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
   static const _databaseName = 'bmiDatabase.db';
   static const _databaseVersion = 3;
   static const bmiTable = 'bmiTable';
@@ -12,9 +15,6 @@ class DatabaseHelper {
   static const columnDate = 'date';
   static const columnClassification = 'classification';
   static const columnColorClassification = 'colorClassification';
-
-  DatabaseHelper._privateConstructor();
-  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
   static Database? _database;
 
