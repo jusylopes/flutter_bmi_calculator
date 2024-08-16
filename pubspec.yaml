@@ -9,24 +9,24 @@ environment:
   sdk: '>=3.0.6 <4.0.0'
 
 dependencies:
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.8
   equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
   iconsax: ^0.0.8
-  intl: ^0.18.1
+  intl: ^0.19.0
   path: ^1.8.3
   provider: ^6.1.1
-  rive: ^0.12.4
-  shared_preferences: ^2.2.3
+  rive: ^0.13.12
+  shared_preferences: ^2.3.1
   sqflite: ^2.3.0
-  syncfusion_flutter_charts: ^26.1.42
+  # syncfusion_flutter_charts: ^26.2.8
   syncfusion_flutter_core: ^26.1.42
   syncfusion_flutter_sliders: ^26.1.42
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 
   flutter_test:
     sdk: flutter
@@ -37,14 +37,22 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/character_boy.png
-    - assets/images/character_girl.png
+    - assets/images/background.png    
     - assets/images/box_empty.png
-
+    - assets/images/scale.png
+    - assets/animations/character_boy_sad.riv
     - assets/animations/character_boy.riv
+    - assets/animations/character_girl_sad.riv
     - assets/animations/character_girl.riv
+    - assets/animations/character_monster_sad.riv
+    - assets/animations/character_monster.riv
+    - assets/animations/character_ogre_sad.riv
+    - assets/animations/character_ogre.riv
 
   fonts:
-    - family: Roboto
+    - family: Pixels
       fonts:
-        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Pixels.otf
+ 
+  
+
