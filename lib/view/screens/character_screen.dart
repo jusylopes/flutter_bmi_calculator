@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/models/character.dart';
+import 'package:bmi_calculator/utils/utils.dart';
 import 'package:bmi_calculator/view/components/components.dart';
 
 import 'package:flutter/material.dart';
@@ -30,18 +31,31 @@ class CharacterScreen extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            ImageCharacter(
-              bmiController: bmiController,
-              character: Character.girl,
-            ),
-            ImageCharacter(
-              bmiController: bmiController,
-              character: Character.boy,
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ImageCharacter(
+                bmiController: bmiController,
+                character: Character.girl,
+                characterAsset: AssetsManager.characterGirl,
+              ),
+              ImageCharacter(
+                  bmiController: bmiController,
+                  character: Character.monster,
+                  characterAsset: AssetsManager.characterMonster),
+              ImageCharacter(
+                bmiController: bmiController,
+                character: Character.boy,
+                characterAsset: AssetsManager.characterBoy,
+              ),
+              ImageCharacter(
+                  bmiController: bmiController,
+                  character: Character.ogre,
+                  characterAsset: AssetsManager.characterOgre),
+            ],
+          ),
         ),
       ),
     );
