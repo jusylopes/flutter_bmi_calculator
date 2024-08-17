@@ -37,7 +37,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               ? const EmptyResultsMessage()
               : Column(
                   children: [
-                    FavoriteBmiChart(favoriteList: favorites.bmis),
                     Expanded(
                       child: ListView.builder(
                         itemCount: favorites.bmis.length,

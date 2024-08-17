@@ -20,8 +20,7 @@ dependencies:
   provider: ^6.1.1
   rive: ^0.13.12
   shared_preferences: ^2.3.1
-  sqflite: ^2.3.0
-  # syncfusion_flutter_charts: ^26.2.8
+  sqflite: ^2.3.0 
   syncfusion_flutter_core: ^26.1.42
   syncfusion_flutter_sliders: ^26.1.42
 
