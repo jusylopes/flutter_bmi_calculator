@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:rive/rive.dart' as rive;
 import 'dart:math' as math;
 
 class ScoreBmiScreen extends StatelessWidget {
@@ -18,73 +19,127 @@ class ScoreBmiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bmi = Provider.of<BmiController>(context);
+    final double heightScreen = MediaQuery.of(context).size.height;
+    final bool isSad = bmi.getResultString() != 'PESO NORMAL';
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+      appBar: _buildAppBar(context),
+      body: Stack(
+        alignment: Alignment.bottomLeft,
+        children: [
+          _buildBackground(),
+          _buildCharacterAnimation(heightScreen, isSad),
+          _buildContent(heightScreen, bmi, context),
+        ],
       ),
-      body: Center(
+    );
+  }
+
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    );
+  }
+
+  Widget _buildBackground() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 50),
+      child: Image.asset(AssetsManager.background, fit: BoxFit.cover),
+    );
+  }
+
+  Widget _buildCharacterAnimation(double heightScreen, bool isSad) {
+    return SizedBox(
+      height: heightScreen / 1.9,
+      child: BlocBuilder<CharacterCubit, CharacterState>(
+        builder: (context, state) {
+          if (state is CharacterLoadingState ||
+              state is CharacterInitialState) {
+            return const Center(
+                child: CircularProgressIndicator(
+              color: AppColors.primaryColor,
+            ));
+          } else if (state is CharacterSelectedState) {
+            return rive.RiveAnimation.asset(
+              AssetsManager.getCharacterAsset(state.character, isSad: isSad),
+              alignment: Alignment.bottomLeft,
+            );
+          }
+          return const SizedBox.shrink();
+        },
+      ),
+    );
+  }
+
+  Widget _buildContent(
+      double heightScreen, BmiController bmi, BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: heightScreen / 2.2),
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Seu IMC é', style: Theme.of(context).textTheme.titleLarge),
-            Column(
-              children: [
-                Text(
-                  bmi.bmiValue.toStringAsFixed(2),
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                BlocBuilder<CharacterCubit, CharacterState>(
-                  builder: (context, state) {
-                    if (state is CharacterSelectedState) {
-                      return Image.asset(
-                        AssetsManager.getCharacterAsset(state.character, false),
-                        fit: BoxFit.fill,
-                        color: bmi.getResultColor(),
-                        height: MediaQuery.of(context).size.height / 3,
-                      );
-                    }
-                    return const CircularProgressIndicator();
-                  },
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
-                Text(
-                  bmi.getResultString(),
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                Text(
-                  DateFormat('dd MMM yyyy').format(DateTime.now()),
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                ScoreBmiProgressIndicator(bmi: bmi),
-                const SizedBox(
-                  height: 12,
-                )
-              ],
-            ),
-            ElevatedButton(
-              onPressed: () {
-                _saveBMI(bmi: bmi, context: context);
-                _navigateFavoriteScreen(context);
-              },
-              style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
-              child: Text(
-                'Salvar resultado',
-                style: Theme.of(context).textTheme.titleSmall,
+            Text(
+              'Seu IMC é',
+              style: TextStyle(
+                fontSize: 50.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: AssetsManager.fontFamilyPixel,
+                height: 0.8,
               ),
             ),
+            _buildBmiDetails(bmi, context),
+            _buildSaveButton(bmi, context),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildBmiDetails(BmiController bmi, BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          bmi.bmiValue.toStringAsFixed(2),
+          style: TextStyle(
+            fontSize: 65.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontFamily: AssetsManager.fontFamilyPixel,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          bmi.getResultString(),
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
+        Text(
+          DateFormat('dd MMM yyyy').format(DateTime.now()),
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
+        const SizedBox(height: 12),
+        ScoreBmiProgressIndicator(bmi: bmi),
+        const SizedBox(height: 12),
+      ],
+    );
+  }
+
+  Widget _buildSaveButton(BmiController bmi, BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        _saveBMI(bmi: bmi, context: context);
+        _navigateFavoriteScreen(context);
+      },
+      style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+      child: Text(
+        'Salvar resultado',
+        style: Theme.of(context).textTheme.titleSmall,
       ),
     );
   }
@@ -94,13 +149,14 @@ class ScoreBmiScreen extends StatelessWidget {
     final random = math.Random();
 
     final bmiFavorite = BmiFavoriteModel(
-        id: random.nextInt(1000000).toString(),
-        height: bmi.height,
-        weight: bmi.weight,
-        bmi: bmi.bmiValue,
-        date: DateTime.now(),
-        colorClassification: bmi.getResultColor(),
-        classification: bmi.getResultString());
+      id: random.nextInt(1000000).toString(),
+      height: bmi.height,
+      weight: bmi.weight,
+      bmi: bmi.bmiValue,
+      date: DateTime.now(),
+      colorClassification: bmi.getResultColor(),
+      classification: bmi.getResultString(),
+    );
 
     try {
       await Provider.of<FavoriteController>(context, listen: false)
