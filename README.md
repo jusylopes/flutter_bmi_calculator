@@ -8,6 +8,7 @@ O aplicativo Calculadora de IMC é uma ferramenta simples e intuitiva para calcu
 <img src="screenshots/Screenshot_1.png" width="22%">
 <img src="screenshots/Screenshot_2.png" width="22%">
 <img src="screenshots/Screenshot_3.png" width="22%">
+<img src="bmi_calculator.gif" width="22%">
 </p>
 
 ### Tecnologias utilizadas
@@ -22,4 +23,4 @@ O aplicativo Calculadora de IMC é uma ferramenta simples e intuitiva para calcu
 ### Desenvolvedora
 
 <a href="https://www.linkedin.com/in/jusy-lopes/" > <img align="center" src="https://img.shields.io/badge/- jusylopes-05122A?style=flat&logo=linkedin" alt="linkedin"/>
-3
+
