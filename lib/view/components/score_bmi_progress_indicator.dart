@@ -2,13 +2,54 @@ import 'package:bmi_calculator/controllers/bmi_controller.dart';
 import 'package:bmi_calculator/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class ScoreBmiProgressIndicator extends StatelessWidget {
+class ScoreBmiProgressIndicator extends StatefulWidget {
   const ScoreBmiProgressIndicator({
     super.key,
     required this.bmi,
   });
 
   final BmiController bmi;
+
+  @override
+  State<ScoreBmiProgressIndicator> createState() =>
+      _ScoreBmiProgressIndicatorState();
+}
+
+class _ScoreBmiProgressIndicatorState extends State<ScoreBmiProgressIndicator> {
+  final double barProgressWidth = 280;
+  double arrowPosition = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _startArrowAnimation();
+    });
+  }
+
+  void _startArrowAnimation() {
+    final double scaleWidth = barProgressWidth;
+
+    final double segmentWidth = scaleWidth / 5;
+    double targetPosition = 0;
+
+    if (widget.bmi.bmiValue < 18.5) {
+      targetPosition = 0;
+    } else if (widget.bmi.bmiValue < 25) {
+      targetPosition = segmentWidth * 1;
+    } else if (widget.bmi.bmiValue < 29.9) {
+      targetPosition = segmentWidth * 2;
+    } else if (widget.bmi.bmiValue < 35) {
+      targetPosition = segmentWidth * 3;
+    } else {
+      targetPosition = segmentWidth * 4;
+    }
+
+    setState(() {
+      arrowPosition = targetPosition.clamp(0.0, scaleWidth - 40);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +61,7 @@ class ScoreBmiProgressIndicator extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(30),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
+              width: barProgressWidth,
               height: 60,
               child: Row(
                 children: [
@@ -48,10 +89,10 @@ class ScoreBmiProgressIndicator extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-              left: (bmi.bmiValue / 180.0) *
-                  MediaQuery.of(context).size.width *
-                  (bmi.bmiValue / 13.5),
+          AnimatedPositioned(
+              duration: const Duration(milliseconds: 800),
+              curve: Curves.easeInOut,
+              left: arrowPosition,
               bottom: 22,
               child: const Icon(
                 Icons.arrow_drop_down_rounded,
