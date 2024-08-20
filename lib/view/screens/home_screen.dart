@@ -39,11 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: BlocBuilder<CharacterCubit, CharacterState>(
         builder: (context, state) {
-          if (state is CharacterLoadingState) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is CharacterNotSelectedState) {
+          if (state is CharacterNotSelectedState) {
             return const CharacterScreen();
           }
+
           return _pages.elementAt(_selectedIndex);
         },
       ),

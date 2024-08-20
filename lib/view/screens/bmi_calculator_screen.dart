@@ -1,7 +1,7 @@
 import 'package:bmi_calculator/blocs/character/character_cubit.dart';
 import 'package:bmi_calculator/blocs/character/character_state.dart';
 import 'package:bmi_calculator/controllers/bmi_controller.dart';
-import 'package:bmi_calculator/utils/assets_manager.dart';
+import 'package:bmi_calculator/utils/colors.dart';
 import 'package:bmi_calculator/view/components/components.dart';
 import 'package:bmi_calculator/view/screens/screens.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +17,10 @@ class BmiCalculatorScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Selecione seu peso e altura',
           maxLines: 2,
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: AssetsManager.fontFamilyPixel,
-          ),
         ),
         actions: [
           IconButton(
@@ -48,13 +45,11 @@ class BmiCalculatorScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.6,
                   child: BlocBuilder<CharacterCubit, CharacterState>(
                     builder: (context, state) {
-                      if (state is CharacterLoadingState) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (state is CharacterSelectedState) {
+                      if (state is CharacterSelectedState) {
                         return AnimationCharacterBmi(
                             character: state.character);
                       }
-                      return const Center(child: CircularProgressIndicator());
+                      return const SizedBox.shrink();
                     },
                   ),
                 ),
