@@ -39,6 +39,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: BlocBuilder<CharacterCubit, CharacterState>(
         builder: (context, state) {
+          if (state is CharacterLoadingState) {
+            return const SizedBox.shrink();
+          }
           if (state is CharacterNotSelectedState) {
             return const CharacterScreen();
           }
