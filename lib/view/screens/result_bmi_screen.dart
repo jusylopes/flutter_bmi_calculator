@@ -23,33 +23,46 @@ class ScoreBmiScreen extends StatelessWidget {
     final bool isSad = bmi.getResultString() != 'PESO NORMAL';
 
     return Scaffold(
-      appBar: _buildAppBar(context),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Stack(
         alignment: Alignment.bottomLeft,
         children: [
-          _buildBackground(),
+          Padding(
+            padding: const EdgeInsets.only(top: 50),
+            child: Image.asset(AssetsManager.background, fit: BoxFit.cover),
+          ),
           _buildCharacterAnimation(heightScreen, isSad),
-          _buildContent(heightScreen, bmi, context),
+          Padding(
+            padding: EdgeInsets.only(bottom: heightScreen / 2.2),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Seu IMC é',
+                    style: TextStyle(
+                      fontSize: 50.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontFamily: AssetsManager.fontFamilyPixel,
+                      height: 0.8,
+                    ),
+                  ),
+                  _buildBmiDetails(bmi, context),
+                  _buildSaveButton(bmi, context),
+                ],
+              ),
+            ),
+          )
         ],
       ),
-    );
-  }
-
-  AppBar _buildAppBar(BuildContext context) {
-    return AppBar(
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new_rounded),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-    );
-  }
-
-  Widget _buildBackground() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 50),
-      child: Image.asset(AssetsManager.background, fit: BoxFit.cover),
     );
   }
 
@@ -72,32 +85,6 @@ class ScoreBmiScreen extends StatelessWidget {
           }
           return const SizedBox.shrink();
         },
-      ),
-    );
-  }
-
-  Widget _buildContent(
-      double heightScreen, BmiController bmi, BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: heightScreen / 2.2),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Seu IMC é',
-              style: TextStyle(
-                fontSize: 50.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-                fontFamily: AssetsManager.fontFamilyPixel,
-                height: 0.8,
-              ),
-            ),
-            _buildBmiDetails(bmi, context),
-            _buildSaveButton(bmi, context),
-          ],
-        ),
       ),
     );
   }
